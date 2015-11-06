@@ -1,9 +1,11 @@
+
 from django.conf.urls import include, url
 from django.contrib import admin
 from quizer import views
 
 urlpatterns = [
 	url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.main_page, name='quizer.views.index'),
 	url(r'^main_page.html$', views.main_page, name='main_page'),
     url(r'^user/$', views.user_page, name='user_page'),
     

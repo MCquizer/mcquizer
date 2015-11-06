@@ -1,12 +1,12 @@
+
 {%extends "base.html" %}
-{%block title %}MCQuizer{% endblock %}
-{%block head %}Welcome to MCQuizer{% endblock %}
+
 {%block content %}
 {% if user.username %}
 <p>Welcome {{ user.username }}!
 Here you can set and share multiple choice questions!</p>
 {% else %}
-<p>Welcome anonymous user!
+<p>Welcome guest!!!
 You need to <a href="/login/">login</a>
 before you can set and share multiple choice questions!.</p>
 {% endif %}
