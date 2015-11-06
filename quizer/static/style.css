@@ -1,9 +1,11 @@
 #nav {
-	float: right;
+    float: right;
 }
 
 h1 {
-	color: green;
+    color: green;
 }
 
-
+li.nav{
+    display: inline;  
+}

@@ -8,47 +8,45 @@
 {% if questions %}
 
 {% if end_time != '"1"' %}
-	<p>you started at {{ start_time }} and you end at {{ end_time }}</p>
+<p>you started at {{ start_time }} and you end at {{ end_time }}</p>
 <script>
-	$(document).ready(function() {
-    	set_timer({{ end_time|safe }}, "quiz_timer") // put your page initialization code here
-	});
-		
-</script>
+        $(document).ready(function() {
+set_timer({{ end_time | safe }}, "quiz_timer") // put your page initialization code here
+        });</script>
 {% else %}
-<script>	
-	$(document).ready(function() {
-	set_timer(set_time({{ jquiz|safe}}, {{ quiz.time|safe}}), "quiz_timer") ;
-	});
+<script>
+            $(document).ready(function() {
+    set_timer(set_time({{ jquiz | safe}}, {{ quiz.time | safe}}), "quiz_timer");
+    });
 </script>
 
 {% endif %}
 <div id="quiz_timer">kk</div>
 <a href="/result/score/{{ quiz.id }}/">score</a> 
 <form action="/score/{{ quiz.id }}/" method="post">
-{% for question in questions %}
+    {% for question in questions %}
 
-<p><b>{{ question.question_text }}</b></p>
+    <p><b>{{ question.question_text }}</b></p>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
     <input type="radio" name="choice{{ question.id }}" id="choice{{ forloop.counter }}"  value="{{ forloop.counter }}"/>
     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-{% endfor %}
-</br>
+    {% endfor %}
+    {% endfor %}
+    </br>
 
-<input type="submit" value="submit" />
+    <input type="submit" value="submit" class="btn btn-primary"/>
 </form>
 
 
 </br>
 
 {% if total %}
-<p><b>Your score is {{ score }} / {{ total }}</b></p>
+<p><b class="alert-warning">Your score is {{ score }} / {{ total }}</b></p>
 {% endif %}
 
 {% else %}

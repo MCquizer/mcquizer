@@ -1,29 +1,56 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html> 
+<!--  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+    
+   *** this part of the doctype will no longer be necessary with html5 ***
+-->
 <html>
-<head>
-<title>MCQuizer |
-{% block title %}{% endblock %}</title>
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-<script type="text/javascript" src="{% static 'jquery-1.11.3.min.js' %}"></script>
-{% block external %}{% endblock %}
-</head>
-<body>
-<div id="nav">
-<a href="/main_page.html">home</a> |
-{% if user.is_authenticated %}
-welcome {{ user.username }}
-<a href="/save/">submit</a> |
-<a href="/user/">
-{{ user.username }}</a> |
-<a href="/logout/">logout</a>
-{% else %}
-<a href="/login/">login</a>
-<a href="/register/">register</a>
-{% endif %}
-</div>
-<h1>{% block head %}{% endblock %}</h1>
-{% block content %}{% endblock %}
-</body>
+    <head>
+        <title>MCQuizer | {% block title %}{% endblock %}</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'boostrap.css' %}" />
+        <script type="text/javascript" src="{% static 'jquery-1.11.3.min.js' %}"></script>
+        {% block external %}{% endblock %}
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid col-md-offset-1">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                    <a class="navbar-brand" href="#">MCQuizer</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/main_page.html">Home</a></li>
+                        <li><a href="">About</a></li> 
+                        <li><a href="">Contact</a>  </li> 
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %} 
+                        <li class="nav"><a href="/user/" class="glyphicon glyphicon-user">Welcome {{ user.username }}</a></li>
+                        <li class="nav"><a href="/save/">submit</a></li>
+                        <li class="nav"> <a href="/logout/">logout</a></li>
+                        {% else %}
+                        <li><a href="/register/"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                        <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container-fluid col-md-offset-1">
+            <h1>{% block head %}{% endblock %}</h1>
+
+            {% block content %}{% endblock %}
+        </div>
+    </body>
 </html>

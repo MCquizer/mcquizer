@@ -3,8 +3,8 @@
 {%block head %}User Login{% endblock %}
 {%block content %}
 {% if form.errors %}
-<p>Your username and password didn't match.
-Please try again.</p>
+<span class="alert-danger">Your username and password didn't match.
+    Please try again.</span><br>
 {% endif %}
 
 <form method="post" action=".">
@@ -13,7 +13,7 @@ Please try again.</p>
 {{ form.username }}</p>
 <p><label for="id_password">Password:</label>
 {{ form.password }}</p>
-<input type="submit" value="login" />
+<input type="submit" value="login" class="btn btn-primary"/>
 <input type="hidden" name="next" value="/user/" />
 </form>
 {% endblock %}
